@@ -12,7 +12,7 @@ type MovieRepo interface {
 	Migrate() error
 	AddMovie(request.MovieRequest) (model.Movie, error)
 	DetailMovie(int) (model.Movie, error)
-	UpdateMovie(request.UpdateMovieRequest) (model.Movie, error)
+	UpdateMovie(int, request.MovieRequest) (model.Movie, error)
 	ListMovie() ([]model.Movie, error)
 	DeleteMovie(int) (model.Movie, error)
 }
@@ -49,8 +49,8 @@ func (m movierepo) ListMovie() (data []model.Movie, err error) {
 }
 
 // UpdateMovie implements MovieRepo.
-func (m movierepo) UpdateMovie(req request.UpdateMovieRequest) (data model.Movie, err error) {
-	return data, m.DB.Model(&data).Where("id = ?", req.Id).Updates(model.Movie{
+func (m movierepo) UpdateMovie(id int, req request.MovieRequest) (data model.Movie, err error) {
+	return data, m.DB.Model(&data).Where("id = ?", id).Updates(model.Movie{
 		Title:       req.Title,
 		Description: req.Description,
 		Rating:      req.Rating,

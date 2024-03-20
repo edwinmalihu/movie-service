@@ -55,7 +55,7 @@ func (m movieController) AddMovie(ctx *gin.Context) {
 func (m movieController) DetailMovie(ctx *gin.Context) {
 	var req request.MovieId
 
-	if err := ctx.ShouldBind(&req); err != nil {
+	if err := ctx.ShouldBindUri(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "wrong field"})
 		return
 	}
@@ -86,7 +86,7 @@ func (m movieController) DetailMovie(ctx *gin.Context) {
 func (m movieController) DeteleMovie(ctx *gin.Context) {
 	var req request.MovieId
 
-	if err := ctx.ShouldBind(&req); err != nil {
+	if err := ctx.ShouldBindUri(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "wrong field"})
 		return
 	}
@@ -137,13 +137,15 @@ func (m movieController) ListMovie(ctx *gin.Context) {
 
 // UpdateMovie implements MovieController.
 func (m movieController) UpdateMovie(ctx *gin.Context) {
-	var req request.UpdateMovieRequest
+	string_id := ctx.Param("id")
+	id, _ := strconv.Atoi(string_id)
+	var req request.MovieRequest
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "wrong field"})
 		return
 	}
 
-	data, err := m.MovieRepo.UpdateMovie(req)
+	data, err := m.MovieRepo.UpdateMovie(id, req)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "failed update movie"})
 		return
@@ -151,7 +153,7 @@ func (m movieController) UpdateMovie(ctx *gin.Context) {
 
 	log.Println("[Update query] = ", data)
 
-	res, err := m.MovieRepo.DetailMovie(req.Id)
+	res, err := m.MovieRepo.DetailMovie(id)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "failed update movie"})
 		return

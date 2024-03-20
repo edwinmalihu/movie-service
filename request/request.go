@@ -16,5 +16,5 @@ type UpdateMovieRequest struct {
 }
 
 type MovieId struct {
-	Id string `json:"id"`
+	Id string `uri:"id"`
 }
