@@ -16,6 +16,7 @@ This service provides endpoints to manage movies.
     "rating": 7.6,
     "image": ""
 }
+```
 
 ### Response Example
 
@@ -29,6 +30,7 @@ This service provides endpoints to manage movies.
     "created_at": "2024-03-21 02:37:22",
     "updated_at": "2024-03-21 02:37:22"
 }
+```
 
 - **List Movies**: `GET /movie`
 ## List Movies
@@ -65,6 +67,7 @@ This service provides endpoints to manage movies.
         "updated_at": "2024-03-21 02:37:22"
     }
 ]
+```
 
 - **Detail Movie**: `GET /movie/:id`
 ## Detail Movies
@@ -81,6 +84,7 @@ This service provides endpoints to manage movies.
     "created_at": "2024-03-21 02:37:22",
     "updated_at": "2024-03-21 02:37:22"
 }
+```
 
 - **Delete Movie**: `DELETE /movie/:id`
 ## Delete Movie
@@ -91,7 +95,7 @@ This service provides endpoints to manage movies.
 {
     "message": "delete movie success"
 }
-
+```
 
 - **Update Movie**: `PATCH /movie/:id`
 ## Update Movie
@@ -105,7 +109,7 @@ This service provides endpoints to manage movies.
     "rating": 7.6,
     "image": ""
 }
-
+```
 ### Response Example
 
 ```json
@@ -118,3 +122,19 @@ This service provides endpoints to manage movies.
     "created_at": "2024-03-21 02:37:22",
     "updated_at": "2024-03-21 02:37:22"
 }
+```
+
+# Menjalankan Aplikasi dengan Docker Compose.
+
+Jalankan perintah berikut untuk memulai kontainer Docker sesuai dengan konfigurasi yang ada:
+   
+   ```bash
+   docker-compose up
+   ```
+atau
+
+running background
+
+```bash
+  docker-compose up -d
+```
