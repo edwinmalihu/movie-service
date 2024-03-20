@@ -1,0 +1,29 @@
+version: '3.9'
+services:
+  movie:
+    image: edwinmalihu/ssg:movie-service-latest
+    environment: 
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: xsis
+      PORT: "5432"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      SERVER_PORT: "8081"
+      SSLMODE: disable
+      TIMEZONE: Asia/Jakarta
+    ports:        
+      - "8081:8081"
+    depends_on:
+      - postgres
+    restart: always
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: synapsis
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    restart: always

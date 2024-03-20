@@ -1,9 +1,11 @@
 package route
 
 import (
+	"fmt"
 	"log"
 	"movie-service/controller"
 	"movie-service/repository"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -26,6 +28,5 @@ func SetupRoute(db *gorm.DB) {
 	httpRoutes.DELETE("/movie/:id", controllerMovie.DeteleMovie)
 	httpRoutes.PATCH("/movie/:id", controllerMovie.UpdateMovie)
 
-	httpRoutes.Run(":9001")
-	// httpRoutes.Run(fmt.Sprintf(":%s", os.Getenv("SERVER_PORT")))
+	httpRoutes.Run(fmt.Sprintf(":%s", os.Getenv("SERVER_PORT")))
 }
