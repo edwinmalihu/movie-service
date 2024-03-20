@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   movie:
-    image: edwinmalihu/ssg:movie-service-latest
+    image: edwinmalihu/ssg:movie-service-lates
     environment: 
       POSTGRES_HOST: postgres
       POSTGRES_DB: xsis
